@@ -1,78 +1,137 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19953595&assignment_repo_type=AssignmentRepo)
-# Real-Time Chat Application with Socket.io
+# Realtime Chat Application
 
-This assignment focuses on building a real-time chat application using Socket.io, implementing bidirectional communication between clients and server.
+A full-stack realtime chat application built with Node.js, Express, Socket.io, React, and MongoDB.
 
-## Assignment Overview
+## Features
 
-You will build a chat application with the following features:
-1. Real-time messaging using Socket.io
-2. User authentication and presence
-3. Multiple chat rooms or private messaging
-4. Real-time notifications
-5. Advanced features like typing indicators and read receipts
+- Real-time messaging (Socket.io)
+- Private and group chats (multiple rooms/channels)
+- User authentication (Firebase Auth & JWT)
+- Typing indicators
+- Message reactions
+- File sharing
+- Notifications (in-app, user join/leave, new messages)
+- Online/offline status tracking
+- Responsive design (works on desktop & mobile)
+- Message search and pagination (optional/advanced)
+- Reconnection logic for socket reliability
 
-## Project Structure
+## Technologies
+
+- **Backend**: Node.js, Express, Socket.io, MongoDB, Firebase Admin SDK
+- **Frontend**: React, Context API, Vite, Tailwind CSS
+- **Database**: MongoDB (Mongoose ODM)
+- **Authentication**: Firebase Auth, JWT
+- **Styling**: Tailwind CSS, CSS Modules
+- **Other**: dotenv, cors, lucide-react (icons)
+
+## Folder Structure
 
 ```
-socketio-chat/
-├── client/                 # React front-end
-│   ├── public/             # Static files
-│   ├── src/                # React source code
-│   │   ├── components/     # UI components
-│   │   ├── context/        # React context providers
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── pages/          # Page components
-│   │   ├── socket/         # Socket.io client setup
-│   │   └── App.jsx         # Main application component
-│   └── package.json        # Client dependencies
-├── server/                 # Node.js back-end
-│   ├── config/             # Configuration files
-│   ├── controllers/        # Socket event handlers
-│   ├── models/             # Data models
-│   ├── socket/             # Socket.io server setup
-│   ├── utils/              # Utility functions
-│   ├── server.js           # Main server file
-│   └── package.json        # Server dependencies
-└── README.md               # Project documentation
+.
+├── client/   # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── contexts/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── socket/
+│   │   └── utils/
+│   ├── public/
+│   └── ...
+├── server/   # Node.js backend
+│   ├── config/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── socket/
+│   ├── sockets/
+│   └── uploads/
+└── ...
 ```
 
-## Getting Started
+## Installation
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week5-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd week-5-web-sockets-assignment-Kesa1203
+   ```
 
-## Files Included
+2. **Install dependencies for both server and client**
+   ```bash
+   cd server && npm install
+   cd ../client && npm install
+   ```
 
-- `Week5-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Socket.io configuration templates
-  - Sample components for the chat interface
+3. **Set up environment variables**
+   - Copy `.env.example` to `.env` in both `server/` and `client/` directories and fill in required values (MongoDB URI, Firebase keys, etc).
+   - Place your Firebase service account JSON as `server/config/serviceAccountKey.json`.
 
-## Requirements
+4. **Start the development servers**
+   ```bash
+   # In the server directory
+   npm run dev
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Modern web browser
-- Basic understanding of React and Express
+   # In the client directory (in a new terminal)
+   npm run dev
+   ```
 
-## Submission
+5. **Access the app**
+   - Frontend: [http://localhost:5173](http://localhost:5173)
+   - Backend API/Socket: [http://localhost:5000](http://localhost:5000)
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## Usage
 
-1. Complete both the client and server portions of the application
-2. Implement the core chat functionality
-3. Add at least 3 advanced features
-4. Document your setup process and features in the README.md
-5. Include screenshots or GIFs of your working application
-6. Optional: Deploy your application and add the URLs to your README.md
+- Register a new user or login with existing credentials.
+- Join a chat room or create a private chat.
+- Send messages, see typing indicators, and receive notifications in real time.
+- View online users and their statuses.
 
-## Resources
+## API Endpoints
 
-- [Socket.io Documentation](https://socket.io/docs/v4/)
-- [React Documentation](https://react.dev/)
-- [Express.js Documentation](https://expressjs.com/)
-- [Building a Chat Application with Socket.io](https://socket.io/get-started/chat) 
+- `POST /auth/login` — User login
+- `POST /auth/register` — User registration
+- `POST /chat/send` — Send a chat message (requires authentication)
+- WebSocket events: `join`, `sendMessage`, `newMessage`, `typing`, `userJoined`, `userLeft`, etc.
+
+## Environment Variables
+
+**Server (.env):**
+```
+MONGO_URI=your_mongodb_connection_string
+FIREBASE_PROJECT_ID=...
+FIREBASE_CLIENT_EMAIL=...
+FIREBASE_PRIVATE_KEY=...
+```
+
+**Client (.env):**
+```
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
+VITE_SERVER_URL=http://localhost:5000
+```
+
+## Screenshots
+
+
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+MIT
+
+## Author
+
+- **Name:** Sylvester L Kesa
+- **GitHub:** [Kesa1203](https://github.com/Kesa1203)
+- **Email:** kesasylvesterlee@gmail.com
+
+---
